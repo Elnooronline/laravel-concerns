@@ -1,0 +1,37 @@
+{
+    "name": "elnooronline/laravel-concerns",
+    "description": "The components that make up the Elnooronline's Laravel Projects",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Fathy",
+            "email": "aliraqi.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "laracasts/flash": "^3.0",
+        "laracasts/presenter": "^0.2.1",
+        "elnooronline/laravel-locales": "^1.0",
+        "ezyang/htmlpurifier": "^4.10",
+        "spatie/laravel-medialibrary": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elnooronline\\LaravelConcerns\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Elnooronline\\LaravelConcerns\\Providers\\ServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    }
+}

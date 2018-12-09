@@ -17,6 +17,10 @@
         "ezyang/htmlpurifier": "^4.10",
         "spatie/laravel-medialibrary": "^7.5"
     },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "mockery/mockery": "^1.2"
+    },
     "autoload": {
         "psr-4": {
             "Elnooronline\\LaravelConcerns\\": "src/"
@@ -24,6 +28,11 @@
         "files": [
             "src/Support/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {

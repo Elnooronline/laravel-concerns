@@ -2,6 +2,8 @@
 
 namespace Elnooronline\LaravelConcerns\Models\Helpers;
 
+use Illuminate\Support\Str;
+
 trait Resourcable
 {
     /**

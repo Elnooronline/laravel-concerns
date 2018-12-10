@@ -4,39 +4,42 @@ namespace Elnooronline\LaravelConcerns\Models\Presenters;
 
 use Illuminate\Support\HtmlString;
 use Laracasts\Presenter\Presenter as LaracastsPresenter;
+use Elnooronline\LaravelConcerns\Models\Presenters\Traits\Routable;
 
 class Presenter extends LaracastsPresenter
 {
-    /**
-     * @var bool
-     */
-    protected $displayShowButton = true;
+    use Routable;
 
     /**
-     * @var bool
+     * The names of the policy abilities.
+     *
+     * @var array
      */
-    protected $displayEditButton = true;
-
-    /**
-     * @var bool
-     */
-    protected $displayDeleteButton = true;
+    protected $abilities = [
+        'create' => 'create',
+        'show' => 'view',
+        'edit' => 'update',
+        'delete' => 'delete',
+    ];
 
     /**
      * display the entity edit button.
      *
      * @throws \Throwable
-     * @return \Illuminate\Support\HtmlString
+     * @return null|\Illuminate\Support\HtmlString
      */
     public function editButton()
     {
-        $entity = $this->entity;
-        $resource = $this->entity->getResourceName();
+        $present = $this;
+
+        if (method_exists($this, 'canEdit') && ! $this->canEdit()) {
+            return null;
+        }
 
         return new HtmlString(
             view(
                 'Presenters::resource.edit',
-                compact('entity', 'resource')
+                compact('present')
             )->render()
         );
     }
@@ -49,13 +52,37 @@ class Presenter extends LaracastsPresenter
      */
     public function deleteButton()
     {
-        $entity = $this->entity;
-        $resource = $this->entity->getResourceName();
+        $present = $this;
+
+        if (method_exists($this, 'canDelete') && ! $this->canDelete()) {
+            return null;
+        }
 
         return new HtmlString(
             view(
                 'Presenters::resource.delete',
-                compact('entity', 'resource')
+                compact('present')
+            )->render()
+        );
+    }
+    /**
+     * display the resource create button.
+     *
+     * @throws \Throwable
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function createButton()
+    {
+        $present = $this;
+
+        if (method_exists($this, 'canCreate') && ! $this->canCreate()) {
+            return null;
+        }
+
+        return new HtmlString(
+            view(
+                'Presenters::resource.create',
+                compact('present')
             )->render()
         );
     }

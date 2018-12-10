@@ -1,10 +1,10 @@
 <?php
+
 namespace Tests;
-use Illuminate\Support\Facades\Schema;
+
+use Tests\Providers\AuthServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Elnooronline\LaravelConcerns\Models\Abstracts\Model;
 use Elnooronline\LaravelConcerns\Providers\ServiceProvider;
-use Elnooronline\LaravelConcerns\Models\Abstracts\Authenticatable;
 
 class TestCase extends OrchestraTestCase
 {
@@ -15,25 +15,8 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
         $this->loadLaravelMigrations(['--database' => 'testbench']);
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-
-        Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->text('body');
-            $table->timestamps();
-        });
-
-        $this->app->make('factory')->define(User::class);
     }
+
     /**
      * Load package service provider
      *
@@ -42,8 +25,12 @@ class TestCase extends OrchestraTestCase
      */
     protected function getPackageProviders($app)
     {
-        return [ServiceProvider::class];
+        return [
+            ServiceProvider::class,
+            AuthServiceProvider::class
+        ];
     }
+
     /**
      * Load package alias
      *
@@ -56,6 +43,7 @@ class TestCase extends OrchestraTestCase
             //
         ];
     }
+
     /**
      * Define environment setup.
      *
@@ -73,5 +61,3 @@ class TestCase extends OrchestraTestCase
         ]);
     }
 }
-class User extends Authenticatable {}
-class Post extends Model {}

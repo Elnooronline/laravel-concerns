@@ -32,16 +32,16 @@ trait Helpers
      */
     protected function getResourceName()
     {
-        if (! $this->resourceName) {
-            return Str::plural(
-                Str::snake(
-                    Str::replaceLast(
-                        'Controller', '', class_basename($this)
-                    )
-                )
-            );
+        if (property_exists($this, 'resourceName')) {
+            return $this->resourceName;
         }
 
-        return $this->resourceName;
+        return Str::plural(
+            Str::snake(
+                Str::replaceLast(
+                    'Controller', '', class_basename($this)
+                )
+            )
+        );
     }
 }

@@ -25,23 +25,4 @@ class LaravelConcernsTest extends TestCase
         $this->assertEquals('users', (new User())->getResourceName());
         $this->assertEquals('custom_resource_name', (new Post())->getResourceName());
     }
-
-    public function testPresenters()
-    {
-        Route::namespace('\Tests\Http\Controllers')->as('dashboard')->resource('/users', 'UserController');
-
-        $user = User::create([
-            'name' => 'username',
-            'email' => 'username@email.com',
-            'password' => bcrypt('password'),
-        ]);
-        //$post = Post::create([
-        //    'title' => 'title',
-        //    'body' => 'body',
-        //]);
-
-        $this->actingAs($user);
-
-        dd($user->present()->createButton);
-    }
 }

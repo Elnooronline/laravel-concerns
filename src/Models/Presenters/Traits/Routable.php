@@ -21,15 +21,13 @@ trait Routable
      *
      * @param string $action
      * @param mixed $params
-     * @return string
+     * @return string|null
      */
     public function route($action, $params = [])
     {
         if ($this->hasPrefixedRoute($action)) {
             return route($this->getRouteName($action), $params);
         }
-
-        return '#';
     }
 
     /**

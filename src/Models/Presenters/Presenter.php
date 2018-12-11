@@ -5,6 +5,7 @@ namespace Elnooronline\LaravelConcerns\Models\Presenters;
 use Illuminate\Support\HtmlString;
 use Laracasts\Presenter\Presenter as LaracastsPresenter;
 use Elnooronline\LaravelConcerns\Models\Presenters\Traits\Routable;
+use Elnooronline\LaravelConcerns\Models\Presenters\Traits\Authorizable;
 
 class Presenter extends LaracastsPresenter
 {
@@ -32,16 +33,18 @@ class Presenter extends LaracastsPresenter
     {
         $present = $this;
 
-        if (method_exists($this, 'canEdit') && ! $this->canEdit()) {
-            return null;
-        }
+        if ($this->getEditUrl()) {
+            if (method_exists($this, 'canEdit') && ! $this->canEdit()) {
+                return null;
+            }
 
-        return new HtmlString(
-            view(
-                'Presenters::resource.edit',
-                compact('present')
-            )->render()
-        );
+            return new HtmlString(
+                view(
+                    'Presenters::resource.edit',
+                    compact('present')
+                )->render()
+            );
+        }
     }
 
     /**
@@ -53,18 +56,22 @@ class Presenter extends LaracastsPresenter
     public function deleteButton()
     {
         $present = $this;
+        $entity = $present->entity;
 
-        if (method_exists($this, 'canDelete') && ! $this->canDelete()) {
-            return null;
+        if ($this->getdeleteUrl()) {
+            if (method_exists($this, 'canDelete') && ! $this->canDelete()) {
+                return null;
+            }
+
+            return new HtmlString(
+                view(
+                    'Presenters::resource.delete',
+                    compact('present', 'entity')
+                )->render()
+            );
         }
-
-        return new HtmlString(
-            view(
-                'Presenters::resource.delete',
-                compact('present')
-            )->render()
-        );
     }
+
     /**
      * display the resource create button.
      *
@@ -75,16 +82,18 @@ class Presenter extends LaracastsPresenter
     {
         $present = $this;
 
-        if (method_exists($this, 'canCreate') && ! $this->canCreate()) {
-            return null;
-        }
+        if ($this->getCreateUrl()) {
+            if (method_exists($this, 'canCreate') && ! $this->canCreate()) {
+                return null;
+            }
 
-        return new HtmlString(
-            view(
-                'Presenters::resource.create',
-                compact('present')
-            )->render()
-        );
+            return new HtmlString(
+                view(
+                    'Presenters::resource.create',
+                    compact('present')
+                )->render()
+            );
+        }
     }
 
     /**
@@ -95,18 +104,38 @@ class Presenter extends LaracastsPresenter
      */
     public function controlButton()
     {
+        $present = $this;
         $entity = $this->entity;
-        $resource = $this->entity->getResourceName();
-
-        $present = [
-            'show' => $this->displayShowButton,
-            'edit' => $this->displayEditButton,
-            'delete' => $this->displayDeleteButton,
+        $authorize = [
+            'show' => $this->getShowUrl(),
+            'edit' => $this->getEditUrl(),
+            'delete' => $this->getdeleteUrl(),
         ];
+        if ($this->isAuthorizable()) {
+            $authorize = [
+                'show' => $this->canShow() && $this->getShowUrl(),
+                'edit' => $this->canEdit() && $this->getEditUrl(),
+                'delete' => $this->canDelete() && $this->getdeleteUrl(),
+            ];
+        }
 
         return new HtmlString(view(
             'Presenters::resource.control',
-            compact('entity', 'resource', 'present')
+            compact('authorize', 'present', 'entity')
         )->render());
+    }
+
+    /**
+     * Determine whether the presenter is authorizable.
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    protected function isAuthorizable()
+    {
+        return in_array(
+            Authorizable::class,
+            array_keys((new \ReflectionClass(self::class))->getTraits())
+        );
     }
 }

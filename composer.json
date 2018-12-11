@@ -15,7 +15,8 @@
         "laracasts/presenter": "^0.2.1",
         "elnooronline/laravel-locales": "^1.0",
         "ezyang/htmlpurifier": "^4.10",
-        "spatie/laravel-medialibrary": "^7.5"
+        "spatie/laravel-medialibrary": "^7.5",
+        "elnooronline/laravel-bootstrap-forms": "^2.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",

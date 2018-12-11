@@ -34,6 +34,10 @@ class ServiceProvider extends Provider
         $this->publishes([
             __DIR__.'/../../config/laravel-concerns.php' => config_path('laravel-concerns.php')
         ], 'concerns:config');
+
+        $this->publishes([
+            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns')
+        ], 'concerns:lang');
     }
 
     /**

@@ -2,9 +2,11 @@
 
 namespace Tests;
 
+use Collective\Html\HtmlServiceProvider;
 use Tests\Providers\AuthServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Elnooronline\LaravelConcerns\Providers\ServiceProvider;
+use Elnooronline\LaravelBootstrapForms\Providers\BootstrapFormsServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -27,7 +29,9 @@ class TestCase extends OrchestraTestCase
     {
         return [
             ServiceProvider::class,
-            AuthServiceProvider::class
+            AuthServiceProvider::class,
+            BootstrapFormsServiceProvider::class,
+            HtmlServiceProvider::class,
         ];
     }
 
@@ -40,7 +44,8 @@ class TestCase extends OrchestraTestCase
     protected function getPackageAliases($app)
     {
         return [
-            //
+            'BsForm' => \Elnooronline\LaravelBootstrapForms\Facades\BsForm::class,
+            'Form' => \Collective\Html\FormFacade::class
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace Tests\Models\Presenters;
 
 use Elnooronline\LaravelConcerns\Models\Presenters\Presenter;
+use Elnooronline\LaravelConcerns\Models\Presenters\Traits\Authorizable;
 
 class UserPresenter extends Presenter
 {
@@ -12,4 +13,9 @@ class UserPresenter extends Presenter
      * @var string
      */
     public $as = 'dashboard.';
+
+    public function getEditUrl()
+    {
+
+    }
 }

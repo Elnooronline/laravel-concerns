@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests;
+namespace Elnooronline\LaravelConcerns\Tests;
 
 use Collective\Html\HtmlServiceProvider;
-use Tests\Providers\AuthServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Elnooronline\LaravelConcerns\Providers\ServiceProvider;
+use Elnooronline\LaravelConcerns\Tests\Providers\AuthServiceProvider;
 use Elnooronline\LaravelBootstrapForms\Providers\BootstrapFormsServiceProvider;
 
 class TestCase extends OrchestraTestCase

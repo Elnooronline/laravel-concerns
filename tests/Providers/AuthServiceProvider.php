@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Providers;
+namespace Elnooronline\LaravelConcerns\Tests\Providers;
 
-use Tests\Models\User;
-use Tests\Policies\UserPolicy;
+use Elnooronline\LaravelConcerns\Tests\Models\User;
+use Elnooronline\LaravelConcerns\Tests\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

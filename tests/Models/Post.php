@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Models;
+namespace Elnooronline\LaravelConcerns\Tests\Models;
 
 use Elnooronline\LaravelConcerns\Models\Abstracts\Model;
 

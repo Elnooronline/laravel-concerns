@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Policies;
+namespace Elnooronline\LaravelConcerns\Tests\Policies;
 
-use Tests\Models\User;
+use Elnooronline\LaravelConcerns\Tests\Models\User;
 
 class UserPolicy
 {
     /**
      * Determine if the given user can be updated by the authenticated user.
      *
-     * @param  \Tests\Models\User  $user
-     * @param  \Tests\Models\User  $model
+     * @param  \Elnooronline\LaravelConcerns\Tests\Models\User  $user
+     * @param  \Elnooronline\LaravelConcerns\Tests\Models\User  $model
      * @return bool
      */
     public function update(?User $user, User $model)

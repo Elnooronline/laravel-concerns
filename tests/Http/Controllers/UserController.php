@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Http\Controllers;
+namespace Elnooronline\LaravelConcerns\Tests\Http\Controllers;
 
-use Tests\Models\User;
+use Elnooronline\LaravelConcerns\Tests\Models\User;
 
 class UserController extends Controller
 {

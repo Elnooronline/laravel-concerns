@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Models\Presenters;
+namespace Elnooronline\LaravelConcerns\Tests\Models\Presenters;
 
 use Elnooronline\LaravelConcerns\Models\Presenters\Presenter;
 use Elnooronline\LaravelConcerns\Models\Presenters\Traits\Authorizable;

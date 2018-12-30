@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace Elnooronline\LaravelConcerns\Tests\Unit;
 
 use Illuminate\Support\Facades\Route;
-use Tests\Http\Controllers\UserController;
-use Tests\TestCase;
-use Tests\Models\Post;
-use Tests\Models\User;
+use Elnooronline\LaravelConcerns\Tests\Http\Controllers\UserController;
+use Elnooronline\LaravelConcerns\Tests\TestCase;
+use Elnooronline\LaravelConcerns\Tests\Models\Post;
+use Elnooronline\LaravelConcerns\Tests\Models\User;
 
 class LaravelConcernsTest extends TestCase
 {

@@ -2,6 +2,7 @@
 
 namespace Elnooronline\LaravelConcerns\Http\Requests;
 
+use Illuminate\Support\Str;
 use Elnooronline\LaravelLocales\Facades\Locales;
 use Illuminate\Foundation\Http\FormRequest as BaseRequest;
 
@@ -107,15 +108,17 @@ class FormRequest extends BaseRequest
      */
     public function getResourceName()
     {
-        preg_match('/(dashboard\.)?([a-zA-Z_-]+)?.*/', $this->route()->getName(), $matches);
-
-        $resource = $matches[2] ?? null;
-
-        if (property_exists($this, 'resource')) {
-            $resource = $this->resource;
+        if (property_exists($this, 'resourceName')) {
+            return $this->resourceName;
         }
 
-        return $resource;
+        return Str::plural(
+            Str::snake(
+                Str::replaceLast(
+                    'Request', '', class_basename($this)
+                )
+            )
+        );
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Elnooronline\LaravelConcerns\Models\Helpers;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait Includable
 {
     /**

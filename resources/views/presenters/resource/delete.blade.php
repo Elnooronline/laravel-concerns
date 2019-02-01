@@ -4,7 +4,7 @@
 
 <a class="btn btn-danger" data-toggle="modal" href="#{{ $modalId }}">
     <i class="fa fa-trash"></i>
-    @lang('lists.actions.delete')
+    @lang('LaravelConcerns::lists.actions.delete')
 </a>
 <div class="modal fade" id="{{ $modalId }}">
 	<div class="modal-dialog">

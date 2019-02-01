@@ -4,14 +4,14 @@
 
 <div class="btn-group">
     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-        <span class="caret"></span> @lang('lists.actions.options')
+        <span class="caret"></span> @lang('LaravelConcerns::lists.actions.options')
     </button>
     <ul class="dropdown-menu">
         @if($authorize['show'])
             <li>
                 <a href="{{ $present->getShowUrl() }}">
                     <i class="fa fa-eye"></i>
-                    @lang('lists.actions.show')
+                    @lang('LaravelConcerns::lists.actions.show')
                 </a>
             </li>
         @endif
@@ -19,7 +19,7 @@
             <li>
                 <a href="{{ $present->getEditUrl() }}">
                     <i class="fa fa-edit"></i>
-                    @lang('lists.actions.edit')
+                    @lang('LaravelConcerns::lists.actions.edit')
                 </a>
             </li>
         @endif
@@ -27,7 +27,7 @@
             <li>
                 <a data-toggle="modal" href="#{{ $modalId }}">
                     <i class="fa fa-trash"></i>
-                    @lang('lists.actions.delete')
+                    @lang('LaravelConcerns::lists.actions.delete')
                 </a>
                 <div class="modal fade" id="{{ $modalId }}">
                     <div class="modal-dialog">

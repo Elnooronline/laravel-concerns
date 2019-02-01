@@ -21,6 +21,7 @@ class ServiceProvider extends Provider
         });
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/presenters', 'Presenters');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'LaravelConcerns');
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-concerns.php', 'laravel-concerns');
 
         $this->publishes([

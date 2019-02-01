@@ -13,7 +13,7 @@ trait Authorizable
      */
     public function canCreate()
     {
-        return Gate::allows($this->abilities['create']);
+        return Gate::allows($this->abilities['create'], get_class($this->entity));
     }
 
     /**

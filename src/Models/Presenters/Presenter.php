@@ -48,6 +48,31 @@ class Presenter extends LaracastsPresenter
     }
 
     /**
+     * display the entity show button.
+     *
+     * @throws \Throwable
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function showButton()
+    {
+        $present = $this;
+        $entity = $present->entity;
+
+        if ($this->getShowUrl()) {
+            if (method_exists($this, 'canShow') && ! $this->canShow()) {
+                return null;
+            }
+
+            return new HtmlString(
+                view(
+                    'Presenters::resource.show',
+                    compact('present', 'entity')
+                )->render()
+            );
+        }
+    }
+
+    /**
      * display the entity delete button.
      *
      * @throws \Throwable

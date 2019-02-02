@@ -160,7 +160,7 @@ class Presenter extends LaracastsPresenter
     {
         return in_array(
             Authorizable::class,
-            array_keys((new \ReflectionClass(self::class))->getTraits())
+            array_keys(class_uses($this))
         );
     }
 }

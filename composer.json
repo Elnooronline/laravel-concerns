@@ -38,7 +38,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Elnooronline\\LaravelConcerns\\Providers\\ServiceProvider"
+                "Elnooronline\\LaravelConcerns\\Providers\\ServiceProvider",
+                "Elnooronline\\LaravelConcerns\\Providers\\ValidationServiceProvider"
             ],
             "aliases": {
 

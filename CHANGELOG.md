@@ -1,5 +1,8 @@
 # Release Notes for Laravel Concerns
 
+## 1.2.0
+* Add `HasLink` resource trait [8d06b6c](https://github.com/Elnooronline/laravel-concerns/commit/8d06b6c872bf317960ec5eaf9b9b354be2853e5f),
+
 ## 1.1.0
 * Add custom validation rules [f121785](https://github.com/Elnooronline/laravel-concerns/commit/f1217857a798a5d027bd1a8f73b3c5f6c0de2b06),
 ## 1.0.3

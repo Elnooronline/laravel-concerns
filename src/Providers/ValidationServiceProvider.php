@@ -15,9 +15,6 @@ class ValidationServiceProvider extends Provider
      */
     public function boot()
     {
-        Validator::extend('onesignal_player_id', function ($attribute, $value, $parameters, $validator) {
-            return preg_match("/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}/", $value);
-        });
         // Check old password
         Validator::extend('check_hash', function ($attribute, $value, $parameters, $validator) {
             return Hash::check($value, array_first($parameters));

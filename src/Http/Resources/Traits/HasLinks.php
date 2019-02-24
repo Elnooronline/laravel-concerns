@@ -22,9 +22,11 @@ trait HasLinks
 
         $resource = $resource ?: $this->resource;
 
+        $user = request()->user() ?: request()->user('api');
+
         if ($ability) {
             return $this->when(
-                optional(request()->user())->can($ability, $resource),
+                optional($user)->can($ability, $resource),
                 $link
             );
         }

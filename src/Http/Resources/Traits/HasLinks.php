@@ -2,6 +2,8 @@
 
 namespace Elnooronline\LaravelConcerns\Http\Resources\Traits;
 
+use Illuminate\Support\Facades\Gate;
+
 trait HasLinks
 {
     /**
@@ -22,11 +24,9 @@ trait HasLinks
 
         $resource = $resource ?: $this->resource;
 
-        $user = request()->user() ?: request()->user('api');
-
         if ($ability) {
             return $this->when(
-                optional($user)->can($ability, $resource),
+                Gate::allows($ability, $resource),
                 $link
             );
         }

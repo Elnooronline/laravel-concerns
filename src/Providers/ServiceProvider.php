@@ -2,8 +2,10 @@
 
 namespace Elnooronline\LaravelConcerns\Providers;
 
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\ServiceProvider as Provider;
+use Elnooronline\LaravelConcerns\Notifications\Channels\FileChannel;
 
 class ServiceProvider extends Provider
 {
@@ -18,6 +20,10 @@ class ServiceProvider extends Provider
             $this->assertSee(e($value));
 
             return $this;
+        });
+
+        Notification::extend('file', function () {
+            return new FileChannel();
         });
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/presenters', 'Presenters');

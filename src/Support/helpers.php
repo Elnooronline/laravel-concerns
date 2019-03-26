@@ -88,28 +88,6 @@ if (! function_exists('random_or_create')) {
     }
 }
 
-function add_dev_packages()
-{
-    $devPackages = [
-        'barryvdh/laravel-debugbar' => '^3.2',
-        'barryvdh/laravel-ide-helper' => '^2.5',
-        'friendsofphp/php-cs-fixer' => '^2.13',
-        'doctrine/dbal' => '^2.9',
-    ];
-
-    $composerPath = base_path().'/composer.json';
-
-    $composer = json_decode(file_get_contents($composerPath), true);
-
-    $composer['require-dev'] = array_merge($composer['require-dev'], $devPackages);
-
-    $json = json_encode($composer, JSON_PRETTY_PRINT);
-
-    $json = str_replace('\/', '/', $json);
-
-    file_put_contents($composerPath, $json);
-}
-
 if (! function_exists('validate_base64')) {
 
     /**

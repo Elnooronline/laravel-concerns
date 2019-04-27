@@ -171,7 +171,7 @@ use Elnooronline\LaravelConcerns\Models\Concerns\SingleTableInheritance;
 
 class User extends Authenticatable
 {
-    use SingleTableInheritance
+    use SingleTableInheritance;
 
     /**
      * The type of the current model for single table inheritance.
@@ -185,11 +185,12 @@ class User extends Authenticatable
 ```
 // Admin Model
 
+use Elnooronline\LaravelConcerns\Models\Scopes\UserTypeScope;
 use Elnooronline\LaravelConcerns\Models\Concerns\SingleTableInheritance;
 
-class Admin extends Authenticatable
+class Admin extends User
 {
-    use SingleTableInheritance
+    use SingleTableInheritance;
 
     /**
      * The table associated with the model.
@@ -204,6 +205,22 @@ class Admin extends Authenticatable
      * @var string
      */
     protected $modelType = 'admin';
+
+	/**
+	 * The "booting" method of the model.
+	 *
+	 * @return void
+	 */
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::addGlobalScope(new UserTypeScope(static::ADMIN_TYPE));
+	}
 	...
 ```
+> The `Elnooronline\LaravelConcerns\Models\Scopes\UserTypeScope` used to determine the user type when use the model. and should be added to all user type models. 
+
 > Now if your account type is `admin` will return `App\Models\Admin` instance when you call `Auth::user()` insted of `App\Models\User`.
+
+> Note : the `App\Models\Admin` model and other type models should extends `App\Models\User` model.

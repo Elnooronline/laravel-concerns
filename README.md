@@ -129,4 +129,81 @@ This feature enables to use `flash()` and `getResourceName()` methods.
 		return [];
 	}
 	```
+### Eloquent Multiple Auth Provider
+> You should add 'eloquent.multiple' provider in your `config/auth.php`
+```
+'providers' => [
+	'users' => [
+		'driver' => 'eloquent.multiple',
+		'model' => App\Models\User::class,
+		'mapping' => [
+			App\Models\User::ADMIN_TYPE => App\Models\Admin::class,
+			App\Models\User::USER_TYPE => App\Models\User::class,
+		],
+	],
+```
+> Add `type` column in users table.
+```
+Schema::table('users', function (Blueprint $table) {
+	$table->string('type')->index();
+});
+```
+> In `User` model should add constants of user types.
+```
+class User extends Authenticatable
+{
+    /**
+     * The code of normal user type.
+     */
+    const USER_TYPE = 'user';
 
+    /**
+     * The code of admin type.
+     */
+    const ADMIN_TYPE = 'admin';
+```
+> Also you should use `Elnooronline\LaravelConcerns\Models\Concerns\SingleTableInheritance` trait in user model to fill type in creating event.
+
+```
+// User model
+
+use Elnooronline\LaravelConcerns\Models\Concerns\SingleTableInheritance;
+
+class User extends Authenticatable
+{
+    use SingleTableInheritance
+
+    /**
+     * The type of the current model for single table inheritance.
+     *
+     * @var string
+     */
+    protected $modelType = 'user';
+	...
+
+```
+```
+// Admin Model
+
+use Elnooronline\LaravelConcerns\Models\Concerns\SingleTableInheritance;
+
+class Admin extends Authenticatable
+{
+    use SingleTableInheritance
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The type of the current model for single table inheritance.
+     *
+     * @var string
+     */
+    protected $modelType = 'admin';
+	...
+```
+> Now if your account type is `admin` will return `App\Models\Admin` instance when you call `Auth::user()` insted of `App\Models\User`.

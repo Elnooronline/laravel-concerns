@@ -2,10 +2,13 @@
 
 namespace Elnooronline\LaravelConcerns\Providers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\ServiceProvider as Provider;
 use Elnooronline\LaravelConcerns\Notifications\Channels\FileChannel;
+use Elnooronline\LaravelConcerns\Auth\Providers\EloquentMultipleUserProvider;
 
 class ServiceProvider extends Provider
 {
@@ -45,6 +48,10 @@ class ServiceProvider extends Provider
         $this->publishes([
             __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns')
         ], 'concerns:lang');
+
+        Auth::provider('eloquent.multiple', function ($app, array $config) {
+            return new EloquentMultipleUserProvider($app->make(Hasher::class), $config['model'], $config['mapping']);
+        });
     }
 
     /**

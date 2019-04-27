@@ -1,5 +1,8 @@
 # Release Notes for Laravel Concerns
 
+## 1.3.0
+* Add eloquent multiple auth provider [189db90](https://github.com/Elnooronline/laravel-concerns/commit/189db90a5eedd7f541659c62e543f39bf8393492),
+
 ## 1.2.0
 * Add `HasLink` resource trait [8d06b6c](https://github.com/Elnooronline/laravel-concerns/commit/8d06b6c872bf317960ec5eaf9b9b354be2853e5f),
 

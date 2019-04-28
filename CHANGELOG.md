@@ -1,5 +1,8 @@
 # Release Notes for Laravel Concerns
 
+## 1.3.1
+* Add WithHashedPassword trait [40aadae](https://github.com/Elnooronline/laravel-concerns/commit/40aadae9d12097ac0d522a21ddb20236d18e8a59),
+
 ## 1.3.0
 * Add eloquent multiple auth provider [189db90](https://github.com/Elnooronline/laravel-concerns/commit/189db90a5eedd7f541659c62e543f39bf8393492),
 

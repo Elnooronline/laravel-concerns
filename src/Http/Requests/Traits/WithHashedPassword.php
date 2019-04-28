@@ -20,6 +20,6 @@ trait WithHashedPassword
             );
         }
 
-        return $this->all();
+        return $this->except('password');
     }
 }

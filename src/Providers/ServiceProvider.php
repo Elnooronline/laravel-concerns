@@ -53,6 +53,8 @@ class ServiceProvider extends Provider
         Auth::provider('eloquent.multiple', function ($app, array $config) {
             return new EloquentMultipleUserProvider($app->make(Hasher::class), $config['model'], $config['mapping']);
         });
+
+        $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
     }
 
     /**

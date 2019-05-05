@@ -4,6 +4,7 @@ namespace Elnooronline\LaravelConcerns\Models\Helpers;
 
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait as HasMedia;
+use Elnooronline\LaravelConcerns\Http\Resources\MediaResource;
 
 trait HasMediaTrait
 {
@@ -169,7 +170,7 @@ trait HasMediaTrait
      * @param string $conversionName
      * @return string
      */
-    public function getFirstOrDefaultMediaUrl(string $collectionName = 'default', $conversionName = '')
+    public function getFirstOrDefaultMediaUrl($collectionName = 'default', $conversionName = '')
     {
         $url = $this->getFirstMediaUrl($collectionName, $conversionName) ?: $this->getFirstMediaUrl($collectionName);
 
@@ -255,5 +256,16 @@ trait HasMediaTrait
         } else {
             return $size;
         }
+    }
+
+    /**
+     * Get the media resource.
+     *
+     * @param string $collection
+     * @return array
+     */
+    public function getMediaResource($collection = 'default')
+    {
+        return MediaResource::collection($this->getMedia($collection))->toArray(request());
     }
 }

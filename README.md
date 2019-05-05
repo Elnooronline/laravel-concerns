@@ -129,6 +129,100 @@ This feature enables to use `flash()` and `getResourceName()` methods.
 		return [];
 	}
 	```
+### Filterable
+> First you should use `Filterable` trait in your model.
+```
+
+namespace App\Models;
+
+use Elnooronline\LaravelConcerns\Http\Filters\Filterable;
+use Elnooronline\LaravelConcerns\Models\Abstracts\Authenticatable;
+
+class User extends Authenticatable
+{
+    use Filterable;
+    
+    ...
+}
+```
+> Then run the following command to generate your filter class.
+```
+php artisan make:filter UserFilter
+```
+`App\Http\Filters\UserFilter`
+```
+<?php
+
+namespace App\Http\Filters;
+
+use Elnooronline\LaravelConcerns\Http\Filters\BaseFilters;
+
+class UserFilter extends BaseFilters
+{
+    /**
+     * Registered filters to operate upon.
+     *
+     * @var array
+     */
+    protected $filters = [
+        'type',
+        'created_at',
+    ];
+    
+    /**
+     * Filter the query by a given type.
+     *
+     * @param  string|int  $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function type($value)
+    {
+        return $this->builder->where('type', $value);
+    }
+
+    /**
+     * Filter the query by a given created at date.
+     *
+     * @param  string|int  $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function createdAt($value)
+    {
+        return $this->builder->whereDate('created_at', $value);
+    }
+}
+```
+> Now you can use the filter from controller.
+
+> Example Url : `/users?type=admin`
+```
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Http\Filters\UserFilter;
+use Illuminate\Support\Facades\View;
+
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \App\Http\Filters\UserFilter $filter
+     * @return \Illuminate\Http\Response
+     */
+    public function index(UserFilter $filter)
+    {
+        return View::make('users.index')
+            ->withUsers(
+                User::filter($filter)->latest()->paginate()
+            );
+    }
+    
+    ...
+}
+```
 ### Eloquent Multiple Auth Provider
 > You should add 'eloquent.multiple' provider in your `config/auth.php`
 ```

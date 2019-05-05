@@ -11,7 +11,7 @@ class FilterMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:filter {name}';
+    protected $name = 'make:filter';
 
     /**
      * The console command description.

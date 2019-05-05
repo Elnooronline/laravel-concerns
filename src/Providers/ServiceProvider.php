@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\ServiceProvider as Provider;
 use Elnooronline\LaravelConcerns\Notifications\Channels\FileChannel;
+use Elnooronline\LaravelConcerns\Console\Commands\FilterMakeCommand;
 use Elnooronline\LaravelConcerns\Auth\Providers\EloquentMultipleUserProvider;
 
 class ServiceProvider extends Provider
@@ -61,6 +62,8 @@ class ServiceProvider extends Provider
      */
     public function register()
     {
-        //
+        $this->commands([
+            FilterMakeCommand::class
+        ]);
     }
 }

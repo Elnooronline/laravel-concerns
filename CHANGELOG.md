@@ -1,5 +1,8 @@
 # Release Notes for Laravel Concerns
 
+## 1.4.0
+* Add getMediaResource() method  [ef96aa1](https://github.com/Elnooronline/laravel-concerns/commit/ef96aa179194fff29b5eab307ed25276ed73d2c7),
+
 ## 1.3.1
 * Add WithHashedPassword trait [40aadae](https://github.com/Elnooronline/laravel-concerns/commit/40aadae9d12097ac0d522a21ddb20236d18e8a59),
 

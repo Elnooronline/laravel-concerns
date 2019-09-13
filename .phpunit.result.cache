@@ -1,1 +1,0 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":230:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:2:{s:77:"Elnooronline\LaravelConcerns\Tests\Unit\LaravelConcernsTest::test_filter_html";d:0.095;s:77:"Elnooronline\LaravelConcerns\Tests\Unit\LaravelConcernsTest::testResourceName";d:0.009;}}}

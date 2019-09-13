@@ -140,13 +140,13 @@ class FormRequest extends BaseRequest
 
             // Detect the key:{default} format.
             // Represent the validation for the default language.
-            if (ends_with($key, $defaultNotation)) {
+            if (Str::endsWith($key, $defaultNotation)) {
                 $newRules[Str::replaceLast($defaultNotation, '', $key).':'.Locales::getCode()] = $rules;
             }
 
             // Detect the key:{lang} format.
             // Represent the validation for supported language format.
-            elseif (ends_with($key, $langNotation)) {
+            elseif (Str::endsWith($key, $langNotation)) {
                 // Loop over the supported languages.
                 foreach ($supportedLanguages as $language) {
                     // Replace the lang in :{lang} with the supported language code..

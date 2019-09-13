@@ -3,7 +3,7 @@
 namespace Elnooronline\LaravelConcerns\Models\Abstracts;
 
 use Illuminate\Foundation\Auth\User;
-use Elnooronline\LaravelConcerns\Models\Helpers\Includable;
+use Elnooronline\LaravelConcerns\Models\Scopes\Includable;
 use Elnooronline\LaravelConcerns\Models\Helpers\Presentable;
 use Elnooronline\LaravelConcerns\Models\Helpers\Resourcable;
 use Elnooronline\LaravelConcerns\Models\Presenters\Presenter;

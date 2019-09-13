@@ -2,6 +2,7 @@
 
 namespace Elnooronline\LaravelConcerns\Providers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider as Provider;
@@ -17,7 +18,7 @@ class ValidationServiceProvider extends Provider
     {
         // Check old password
         Validator::extend('check_hash', function ($attribute, $value, $parameters, $validator) {
-            return Hash::check($value, array_first($parameters));
+            return Hash::check($value, Arr::first($parameters));
         });
         Validator::extend('base64_image', function ($attribute, $value, $parameters, $validator) {
             return validate_base64($value, ['png', 'jpg', 'jpeg', 'gif']);

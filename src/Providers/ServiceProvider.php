@@ -35,10 +35,6 @@ class ServiceProvider extends Provider
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-concerns.php', 'laravel-concerns');
 
         $this->publishes([
-            __DIR__.'/../../database/migrations' => database_path('migrations')
-        ], 'concerns:migrations');
-
-        $this->publishes([
             __DIR__.'/../../resources/views/presenters' => resource_path('views/vendor/Presenters')
         ], 'concerns:views');
 

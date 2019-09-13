@@ -5,9 +5,7 @@ namespace Elnooronline\LaravelConcerns\Models\Scopes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait Includable.
  * @method static \Illuminate\Database\Eloquent\Builder withQueryRelations()
- *
  */
 trait Includable
 {

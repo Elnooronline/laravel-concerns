@@ -29,30 +29,6 @@ if (! function_exists('filter_html')) {
     }
 }
 
-if (! function_exists('localed_data')) {
-    /**
-     * Create a different labels to insert according to number of language supported in the system.
-     *
-     * @param  array $attributes
-     * @param array $additional
-     * @return mixed
-     */
-    function localed_data($attributes = [], $additional = [])
-    {
-        $localedData = [];
-
-        $locales = Locales::get();
-
-        foreach ($attributes as $key => $value) {
-            foreach ($locales as $language) {
-                $localedData["$key:{$language->code}"] = $value;
-            }
-        }
-
-        return $localedData + $additional;
-    }
-}
-
 if (! function_exists('create')) {
     /**
      * Create a collection of models and persist them to the database.

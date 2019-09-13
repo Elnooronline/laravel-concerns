@@ -2,6 +2,7 @@
 
 namespace Elnooronline\LaravelConcerns\Http\Requests;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Elnooronline\LaravelLocales\Facades\Locales;
 use Illuminate\Foundation\Http\FormRequest as BaseRequest;
@@ -94,7 +95,7 @@ class FormRequest extends BaseRequest
     public function attributes()
     {
         if (is_array($attributes = trans($this->getResourceName().'.attributes'))) {
-            return array_dot($attributes + $this->localedAttributes($this->getLocaledAttributeFromRules()));
+            return Arr::dot($attributes + $this->localedAttributes($this->getLocaledAttributeFromRules()));
         }
 
         return [];
@@ -139,7 +140,7 @@ class FormRequest extends BaseRequest
             // Detect the key:{default} format.
             // Represent the validation for the default language.
             if (ends_with($key, $defaultNotation)) {
-                $newRules[str_replace_last($defaultNotation, '', $key).':'.Locales::getCode()] = $rules;
+                $newRules[Str::replaceLast($defaultNotation, '', $key).':'.Locales::getCode()] = $rules;
             }
 
             // Detect the key:{lang} format.
@@ -148,7 +149,7 @@ class FormRequest extends BaseRequest
                 // Loop over the supported languages.
                 foreach ($supportedLanguages as $language) {
                     // Replace the lang in :{lang} with the supported language code..
-                    $localedKey = str_replace_last($langNotation, ':'.$language->code, $key);
+                    $localedKey = Str::replaceLast($langNotation, ':'.$language->code, $key);
                     // If there is :{default} notation defined avoid overriding it.
                     if (! isset($newRules[$localedKey])) {
                         $newRules[$localedKey] = $rules;
@@ -194,7 +195,7 @@ class FormRequest extends BaseRequest
     {
         $localedAttributes = [];
         foreach ($this->rules() as $attribute => $rule) {
-            if (str_contains($attribute, ':')) {
+            if (Str::contains($attribute, ':')) {
                 $localedAttributes[] = explode(':', $attribute)[0];
             }
         }

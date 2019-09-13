@@ -12,7 +12,7 @@ trait Includable
     /**
      * Load the relations from url query parameters.
      *
-     * @param Builder $builder
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithQueryRelations(Builder $builder)

@@ -9,14 +9,14 @@ trait Helpers
     /**
      * Send a flash message.
      *
-     * @param  string $event
-     * @param  string $level
-     * @param  string $lang
+     * @param  string  $event
+     * @param  string  $level
+     * @param  string  $lang
      * @return \Elnooronline\LaravelConcerns\Http\Controllers\Helpers
      */
     public function flash($event = 'created', $level = 'success', $lang = null)
     {
-        if (! $lang) {
+        if (!$lang) {
             $lang = $this->getResourceName();
         }
 

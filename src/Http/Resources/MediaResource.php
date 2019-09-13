@@ -25,8 +25,8 @@ class MediaResource extends JsonResource
                 'delete' => [
                     'href' => route('api.media.destroy', $this->resource),
                     'method' => 'DELETE',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

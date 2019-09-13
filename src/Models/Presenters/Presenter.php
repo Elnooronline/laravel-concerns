@@ -26,15 +26,15 @@ class Presenter extends LaracastsPresenter
     /**
      * display the entity edit button.
      *
-     * @throws \Throwable
      * @return null|\Illuminate\Support\HtmlString
+     * @throws \Throwable
      */
     public function editButton()
     {
         $present = $this;
 
         if ($this->getEditUrl()) {
-            if (method_exists($this, 'canEdit') && ! $this->canEdit()) {
+            if (method_exists($this, 'canEdit') && !$this->canEdit()) {
                 return null;
             }
 
@@ -50,8 +50,8 @@ class Presenter extends LaracastsPresenter
     /**
      * display the entity show button.
      *
-     * @throws \Throwable
      * @return \Illuminate\Support\HtmlString
+     * @throws \Throwable
      */
     public function showButton()
     {
@@ -59,7 +59,7 @@ class Presenter extends LaracastsPresenter
         $entity = $present->entity;
 
         if ($this->getShowUrl()) {
-            if (method_exists($this, 'canShow') && ! $this->canShow()) {
+            if (method_exists($this, 'canShow') && !$this->canShow()) {
                 return null;
             }
 
@@ -75,8 +75,8 @@ class Presenter extends LaracastsPresenter
     /**
      * display the entity delete button.
      *
-     * @throws \Throwable
      * @return \Illuminate\Support\HtmlString
+     * @throws \Throwable
      */
     public function deleteButton()
     {
@@ -84,7 +84,7 @@ class Presenter extends LaracastsPresenter
         $entity = $present->entity;
 
         if ($this->getdeleteUrl()) {
-            if (method_exists($this, 'canDelete') && ! $this->canDelete()) {
+            if (method_exists($this, 'canDelete') && !$this->canDelete()) {
                 return null;
             }
 
@@ -100,15 +100,15 @@ class Presenter extends LaracastsPresenter
     /**
      * display the resource create button.
      *
-     * @throws \Throwable
      * @return \Illuminate\Support\HtmlString
+     * @throws \Throwable
      */
     public function createButton()
     {
         $present = $this;
 
         if ($this->getCreateUrl()) {
-            if (method_exists($this, 'canCreate') && ! $this->canCreate()) {
+            if (method_exists($this, 'canCreate') && !$this->canCreate()) {
                 return null;
             }
 

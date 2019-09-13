@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Route;
 use Elnooronline\LaravelConcerns\Tests\TestCase;
 use Elnooronline\LaravelConcerns\Tests\Models\User;
-use Illuminate\Support\Facades\Route;
 
 class TestPresenters extends TestCase
 {

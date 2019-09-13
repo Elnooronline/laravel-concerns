@@ -28,7 +28,7 @@ abstract class BaseFilters
     /**
      * Create a new BaseFilters instance.
      *
-     * @param Request $request
+     * @param  Request  $request
      */
     public function __construct(Request $request)
     {
@@ -38,14 +38,14 @@ abstract class BaseFilters
     /**
      * Apply the filters.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $builder
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function apply($builder)
     {
         $this->builder = $builder;
         foreach ($this->getFilters() as $filter => $value) {
-            if (! is_null($value) && method_exists($this, $methodName = camel_case($filter))) {
+            if (!is_null($value) && method_exists($this, $methodName = camel_case($filter))) {
                 $this->$methodName($value);
             }
         }

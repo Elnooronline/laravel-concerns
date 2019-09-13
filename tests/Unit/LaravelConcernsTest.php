@@ -2,8 +2,6 @@
 
 namespace Elnooronline\LaravelConcerns\Tests\Unit;
 
-use Illuminate\Support\Facades\Route;
-use Elnooronline\LaravelConcerns\Tests\Http\Controllers\UserController;
 use Elnooronline\LaravelConcerns\Tests\TestCase;
 use Elnooronline\LaravelConcerns\Tests\Models\Post;
 use Elnooronline\LaravelConcerns\Tests\Models\User;

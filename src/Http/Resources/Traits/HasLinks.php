@@ -9,10 +9,10 @@ trait HasLinks
     /**
      * Set the link of the given action.
      *
-     * @param string $route
-     * @param string $method
-     * @param null|string $ability
-     * @param null $resource
+     * @param  string  $route
+     * @param  string  $method
+     * @param  null|string  $ability
+     * @param  null  $resource
      * @return array
      */
     public function setLink($route, $method, $ability = null, $resource = null)

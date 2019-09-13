@@ -1,16 +1,15 @@
 <?php
-if (! function_exists('filter_html')) {
+if (!function_exists('filter_html')) {
     /**
      * Remove dangerous tags (with attributes) from html.
      *
-     * @param  string $html
-     *
-     * @param null $defaultAllowed
+     * @param  string  $html
+     * @param  null  $defaultAllowed
      * @return string
      */
     function filter_html($html, $defaultAllowed = null)
     {
-        if (! $defaultAllowed) {
+        if (!$defaultAllowed) {
             $defaultAllowed = 'div,img[src],a[href|title],blockquote[cite],h1,h2,h3,h4,h5,b,i,tt,hr,strong,span,s,p,code,pre,em,ul,ol,li,table,thead,tbody,tr,td,th,br,*[style|class]';
         }
 
@@ -29,13 +28,13 @@ if (! function_exists('filter_html')) {
     }
 }
 
-if (! function_exists('create')) {
+if (!function_exists('create')) {
     /**
      * Create a collection of models and persist them to the database.
      *
      * @param $class
-     * @param  array $attributes
-     * @param null $times
+     * @param  array  $attributes
+     * @param  null  $times
      * @return mixed
      */
     function create($class, $attributes = [], $times = null)
@@ -44,19 +43,19 @@ if (! function_exists('create')) {
     }
 }
 
-if (! function_exists('random_or_create')) {
+if (!function_exists('random_or_create')) {
     /**
      * Get random instance for the given model class or create new.
      *
-     * @param string $model
-     * @param int|null $count
+     * @param  string  $model
+     * @param  int|null  $count
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Support\Collection
      */
     function random_or_create($model, $count = null)
     {
         $instance = new $model;
 
-        if (! $instance->count()) {
+        if (!$instance->count()) {
             return factory($model, $count)->create();
         }
 
@@ -64,13 +63,13 @@ if (! function_exists('random_or_create')) {
     }
 }
 
-if (! function_exists('validate_base64')) {
+if (!function_exists('validate_base64')) {
 
     /**
      * Validate a base64 content.
      *
-     * @param string $base64data
-     * @param array $allowedMime example ['png', 'jpg', 'jpeg']
+     * @param  string  $base64data
+     * @param  array  $allowedMime  example ['png', 'jpg', 'jpeg']
      * @return bool
      * @throws \Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException
      */
@@ -109,10 +108,10 @@ if (! function_exists('validate_base64')) {
         // Check the MimeTypes
         $validation = Illuminate\Support\Facades\Validator::make(
             ['file' => new Illuminate\Http\File($tmpFile)],
-            ['file' => 'mimes:' . implode(',', $allowedMime)]
+            ['file' => 'mimes:'.implode(',', $allowedMime)]
         );
 
-        return ! $validation->fails();
+        return !$validation->fails();
     }
 }
 

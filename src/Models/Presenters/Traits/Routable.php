@@ -19,8 +19,8 @@ trait Routable
     /**
      * Get the prefixed route of the given action.
      *
-     * @param string $action
-     * @param mixed $params
+     * @param  string  $action
+     * @param  mixed  $params
      * @return string|null
      */
     public function route($action, $params = [])

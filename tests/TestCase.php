@@ -22,7 +22,7 @@ class TestCase extends OrchestraTestCase
     /**
      * Load package service provider
      *
-     * @param  \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageProviders($app)
@@ -38,21 +38,21 @@ class TestCase extends OrchestraTestCase
     /**
      * Load package alias
      *
-     * @param  \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
     protected function getPackageAliases($app)
     {
         return [
             'BsForm' => \Elnooronline\LaravelBootstrapForms\Facades\BsForm::class,
-            'Form' => \Collective\Html\FormFacade::class
+            'Form' => \Collective\Html\FormFacade::class,
         ];
     }
 
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp($app)

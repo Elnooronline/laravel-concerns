@@ -13,8 +13,8 @@ trait HasMediaTrait
     /**
      * Remove existing media items and add the new base64 fle if preset.
      *
-     * @param string $input
-     * @param string $collection
+     * @param  string  $input
+     * @param  string  $collection
      * @return void
      */
     public function addOrUpdateMediaFromRequestBase64Data($input, $collection = 'default')
@@ -33,8 +33,8 @@ trait HasMediaTrait
     /**
      * Remove existing media items and add the new one if preset.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addOrUpdateMediaFromRequest($name, $collection = 'default')
@@ -54,8 +54,8 @@ trait HasMediaTrait
     /**
      * Remove existing media items and add the new one if preset.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addOrUpdateMultipleMediaFromRequest($name, $collection = 'default')
@@ -75,8 +75,8 @@ trait HasMediaTrait
     /**
      * Copy existing media items and add the new one if preset.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function copyMediaFromCollection($name, $collection = 'default')
@@ -89,8 +89,8 @@ trait HasMediaTrait
     /**
      * Remove existing media items and add the new one if preset.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addOrUpdateMediaFromUrl($url, $collection = 'default')
@@ -103,11 +103,11 @@ trait HasMediaTrait
      * Remove existing media items and add the new one if preset.
      *
      * @param $path
-     * @param string $collection
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @param  string  $collection
+     * @return void
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
-     * @return void
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      */
     public function addOrUpdateMediaFromPath($path, $collection = 'default')
     {
@@ -118,8 +118,8 @@ trait HasMediaTrait
     /**
      * add a new images into the collection.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addMultibyteMediaFromRequest($name, $collection = 'default')
@@ -137,8 +137,8 @@ trait HasMediaTrait
     /**
      * add a new images into the collection.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addMultibyteOrBase64MediaFromRequest($name, $collection = 'default')
@@ -166,8 +166,8 @@ trait HasMediaTrait
      * for first media for the given collectionName.
      * If  cannot find a media return a default placeholder.
      *
-     * @param string $collectionName
-     * @param string $conversionName
+     * @param  string  $collectionName
+     * @param  string  $conversionName
      * @return string
      */
     public function getFirstOrDefaultMediaUrl($collectionName = 'default', $conversionName = '')
@@ -194,7 +194,8 @@ trait HasMediaTrait
     /**
      * Register the conversions for the specified model.
      *
-     * @param \App\Models\Concerns\Media|null $media
+     * @param  \Spatie\MediaLibrary\Models\Media  $media
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
      */
     public function registerMediaConversions(Media $media = null)
     {
@@ -222,8 +223,8 @@ trait HasMediaTrait
     /**
      * add a new images into the collection.
      *
-     * @param string $name
-     * @param string $collection
+     * @param  string  $name
+     * @param  string  $collection
      * @return void
      */
     public function addOrUpdateMultipleMediaFromBase64($name, $collection = 'default')
@@ -240,15 +241,15 @@ trait HasMediaTrait
     /**
      * Format bytes to kb, mb, gb, tb.
      *
-     * @param  \Spatie\MediaLibrary\Models\Media $media
-     * @param  int $precision
+     * @param  \Spatie\MediaLibrary\Models\Media  $media
+     * @param  int  $precision
      * @return int
      */
     public function getFormatedSize(Media $media, $precision = 2)
     {
         $size = $media->size;
         if ($size > 0) {
-            $size = (int)$size;
+            $size = (int) $size;
             $base = log($size) / log(1024);
             $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
@@ -261,7 +262,7 @@ trait HasMediaTrait
     /**
      * Get the media resource.
      *
-     * @param string $collection
+     * @param  string  $collection
      * @return array
      */
     public function getMediaResource($collection = 'default')

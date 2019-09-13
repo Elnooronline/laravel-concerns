@@ -12,7 +12,7 @@ class MediaController
     /**
      * Delete the given media.
      *
-     * @param \Spatie\MediaLibrary\Models\Media $media
+     * @param  \Spatie\MediaLibrary\Models\Media  $media
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */

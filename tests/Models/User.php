@@ -2,8 +2,8 @@
 
 namespace Elnooronline\LaravelConcerns\Tests\Models;
 
-use Elnooronline\LaravelConcerns\Models\Abstracts\Authenticatable;
 use Tests\Models\Presenters\UserPresenter;
+use Elnooronline\LaravelConcerns\Models\Abstracts\Authenticatable;
 
 class User extends Authenticatable
 {
@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password',
     ];
 
     /**

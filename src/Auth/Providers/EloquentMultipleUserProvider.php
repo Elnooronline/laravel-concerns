@@ -2,9 +2,9 @@
 
 namespace Elnooronline\LaravelConcerns\Auth\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Auth\EloquentUserProvider;
-use Illuminate\Support\Facades\Config;
 
 class EloquentMultipleUserProvider extends EloquentUserProvider
 {
@@ -13,9 +13,9 @@ class EloquentMultipleUserProvider extends EloquentUserProvider
     /**
      * EloquentMultipleUserProvider constructor.
      *
-     * @param \Illuminate\Contracts\Hashing\Hasher $hasher
-     * @param string $model
-     * @param array $mapping
+     * @param  \Illuminate\Contracts\Hashing\Hasher  $hasher
+     * @param  string  $model
+     * @param  array  $mapping
      */
     public function __construct(Hasher $hasher, $model, array $mapping)
     {
@@ -50,7 +50,6 @@ class EloquentMultipleUserProvider extends EloquentUserProvider
 
     /**
      * Take a base authenticatable and return the proper object for it based on its type attribute.
-     *
      * May return Customer, Shop or Manager model.
      *
      * @param $authenticatable
@@ -58,7 +57,7 @@ class EloquentMultipleUserProvider extends EloquentUserProvider
      */
     protected function mapRetrievedAuthenticatable($authenticatable)
     {
-        if (! $authenticatable) {
+        if (!$authenticatable) {
             return null;
         }
 

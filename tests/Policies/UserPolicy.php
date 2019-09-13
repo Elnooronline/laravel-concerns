@@ -16,6 +16,5 @@ class UserPolicy
     public function update(?User $user, User $model)
     {
         return true;
-        return $user->id === $model->id;
     }
 }

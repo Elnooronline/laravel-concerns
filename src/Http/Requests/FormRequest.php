@@ -31,6 +31,8 @@ class FormRequest extends BaseRequest
         } elseif ($this->isCreateRequest()) {
             return $this->createRules();
         }
+
+        return [];
     }
 
     /**
@@ -102,7 +104,6 @@ class FormRequest extends BaseRequest
     }
 
     /**
-     *
      * Get the model resource name by route.
      *
      * @return string|null
@@ -125,7 +126,7 @@ class FormRequest extends BaseRequest
     /**
      * Parse localed rules.
      *
-     * @param array $localedRules
+     * @param  array  $localedRules
      * @return array
      */
     public function parseLocaled($localedRules)
@@ -151,7 +152,7 @@ class FormRequest extends BaseRequest
                     // Replace the lang in :{lang} with the supported language code..
                     $localedKey = Str::replaceLast($langNotation, ':'.$language->code, $key);
                     // If there is :{default} notation defined avoid overriding it.
-                    if (! isset($newRules[$localedKey])) {
+                    if (!isset($newRules[$localedKey])) {
                         $newRules[$localedKey] = $rules;
                     }
                 }
@@ -167,8 +168,7 @@ class FormRequest extends BaseRequest
     /**
      * Translate localed attributes.
      *
-     * @param $resource
-     * @param array $attributes
+     * @param  array  $attributes
      * @return array
      */
     public function localedAttributes($attributes = [])

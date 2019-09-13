@@ -35,15 +35,15 @@ class ServiceProvider extends Provider
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-concerns.php', 'laravel-concerns');
 
         $this->publishes([
-            __DIR__.'/../../resources/views/presenters' => resource_path('views/vendor/Presenters')
+            __DIR__.'/../../resources/views/presenters' => resource_path('views/vendor/Presenters'),
         ], 'concerns:views');
 
         $this->publishes([
-            __DIR__.'/../../config/laravel-concerns.php' => config_path('laravel-concerns.php')
+            __DIR__.'/../../config/laravel-concerns.php' => config_path('laravel-concerns.php'),
         ], 'concerns:config');
 
         $this->publishes([
-            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns')
+            __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns'),
         ], 'concerns:lang');
 
         Auth::provider('eloquent.multiple', function ($app, array $config) {
@@ -61,7 +61,7 @@ class ServiceProvider extends Provider
     public function register()
     {
         $this->commands([
-            FilterMakeCommand::class
+            FilterMakeCommand::class,
         ]);
     }
 }

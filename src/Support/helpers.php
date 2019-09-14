@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Arr;
+
 if (!function_exists('filter_html')) {
     /**
      * Remove dangerous tags (with attributes) from html.
@@ -98,7 +101,7 @@ if (!function_exists('validate_base64')) {
         file_put_contents($tmpFile, $binaryData);
 
         // guard Against Invalid MimeType
-        $allowedMime = array_flatten($allowedMime);
+        $allowedMime = Arr::flatten($allowedMime);
 
         // no allowedMimeTypes, then any type would be ok
         if (empty($allowedMime)) {

@@ -2,8 +2,6 @@
 
 namespace Elnooronline\LaravelConcerns\Providers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\ServiceProvider as Provider;
@@ -31,15 +29,10 @@ class ServiceProvider extends Provider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/presenters', 'Presenters');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'LaravelConcerns');
-        $this->mergeConfigFrom(__DIR__.'/../../config/laravel-concerns.php', 'laravel-concerns');
 
         $this->publishes([
             __DIR__.'/../../resources/views/presenters' => resource_path('views/vendor/Presenters'),
         ], 'concerns:views');
-
-        $this->publishes([
-            __DIR__.'/../../config/laravel-concerns.php' => config_path('laravel-concerns.php'),
-        ], 'concerns:config');
 
         $this->publishes([
             __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns'),

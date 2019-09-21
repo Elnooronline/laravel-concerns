@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\ServiceProvider as Provider;
 use Elnooronline\LaravelConcerns\Notifications\Channels\FileChannel;
 use Elnooronline\LaravelConcerns\Console\Commands\FilterMakeCommand;
-use Elnooronline\LaravelConcerns\Auth\Providers\EloquentMultipleUserProvider;
 
 class ServiceProvider extends Provider
 {
@@ -45,10 +44,6 @@ class ServiceProvider extends Provider
         $this->publishes([
             __DIR__.'/../../resources/lang' => resource_path('lang/vendor/Concerns'),
         ], 'concerns:lang');
-
-        Auth::provider('eloquent.multiple', function ($app, array $config) {
-            return new EloquentMultipleUserProvider($app->make(Hasher::class), $config['model'], $config['mapping']);
-        });
 
         $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
     }

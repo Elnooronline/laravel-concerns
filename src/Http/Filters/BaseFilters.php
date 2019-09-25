@@ -2,6 +2,7 @@
 
 namespace Elnooronline\LaravelConcerns\Http\Filters;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 abstract class BaseFilters
@@ -45,7 +46,7 @@ abstract class BaseFilters
     {
         $this->builder = $builder;
         foreach ($this->getFilters() as $filter => $value) {
-            if (!is_null($value) && method_exists($this, $methodName = camel_case($filter))) {
+            if (!is_null($value) && method_exists($this, $methodName = Str::camel($filter))) {
                 $this->$methodName($value);
             }
         }

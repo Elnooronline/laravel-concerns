@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 abstract class BaseFilters
 {
     /**
-     * @var Request
+     * @var Illuminate\Http\Request
      */
     protected $request;
 
@@ -29,7 +29,7 @@ abstract class BaseFilters
     /**
      * Create a new BaseFilters instance.
      *
-     * @param  Request  $request
+     * @param  Illuminate\Http\Request  $request
      */
     public function __construct(Request $request)
     {
@@ -45,8 +45,15 @@ abstract class BaseFilters
     public function apply($builder)
     {
         $this->builder = $builder;
-        foreach ($this->getFilters() as $filter => $value) {
-            if (!is_null($value) && method_exists($this, $methodName = Str::camel($filter))) {
+        foreach ($this->getFilters() as $filter) {
+            $value = $this->request->query($filter);
+            if ($this->request->has($filter)) {
+                $methodName = Str::camel($filter);
+            } else {
+                $methodName = 'default'.Str::studly($filter);
+            }
+
+            if (method_exists($this, $methodName)) {
                 $this->$methodName($value);
             }
         }
@@ -61,6 +68,7 @@ abstract class BaseFilters
      */
     public function getFilters()
     {
-        return $this->request->only($this->filters);
+        return property_exists($this, 'filters')
+        && is_array($this->filters) ? $this->filters : [];
     }
 }
